@@ -70,6 +70,8 @@ MEMORY_SIZES = \
     --xram-size 0 \
     --stack-size $(STACK_SIZE) \
     --code-size 1017
+FLASH_SIZE := 1024
+XRAM_SIZE := 1024
 
 #
 MEMORY_MODEL := --model-small
