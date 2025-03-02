@@ -391,12 +391,10 @@ void send(const unsigned char byte)
     }
 }
 
-void send_radio_packet(const unsigned char rfcode)
+void send_radio_packet(unsigned char rfcode)
 {
     unsigned char index;
-    unsigned char byteToSend;
-    
-    
+
     enable_radio_vdd();
     delay1ms(RADIO_STARTUP_TIME);
     
@@ -417,8 +415,7 @@ void send_radio_packet(const unsigned char rfcode)
         
 #if (PACKET_COUNT_WITH_CODE)
         // effectively wraps around every sixteen counts because we only have upper four bits in radio packet available
-        byteToSend = (flag.packetCount << 4) | rfcode;
-        send(byteToSend);
+        rfcode |= (flag.packetCount << 4);
 #else
         send(rfcode);
 #endif
